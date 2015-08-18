@@ -19,6 +19,7 @@ type Transaction struct {
 	MerchantAccountId   string               `xml:"merchant-account-id,omitempty"`
 	PlanId              string               `xml:"plan-id,omitempty"`
 	CreditCard          *CreditCard          `xml:"credit-card,omitempty"`
+	PaypalTransaction   *PaypalTransaction   `xml:"paypal,omitempty"`
 	Customer            *Customer            `xml:"customer,omitempty"`
 	BillingAddress      *Address             `xml:"billing,omitempty"`
 	ShippingAddress     *Address             `xml:"shipping,omitempty"`
