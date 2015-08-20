@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 )
 
@@ -25,6 +26,9 @@ func (r *Response) merchantAccount() (*MerchantAccount, error) {
 
 func (r *Response) transaction() (*Transaction, error) {
 	var b Transaction
+
+	log.Printf("braintree response: %s", string(r.Body))
+
 	if err := xml.Unmarshal(r.Body, &b); err != nil {
 		return nil, err
 	}
