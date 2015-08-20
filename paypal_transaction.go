@@ -1,5 +1,6 @@
 package braintree
 
 type PaypalTransaction struct {
-	Token string `xml:"token,omitempty"`
+	PayerEmail string `xml:"payer-email,omitempty"`
+	Token      string `xml:"token,omitempty"`
 }
