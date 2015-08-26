@@ -2,6 +2,7 @@ package braintree
 
 import (
 	"bytes"
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -20,6 +21,22 @@ func NewDecimal(unscaled int64, scale int) *Decimal {
 	return &Decimal{Unscaled: unscaled, Scale: scale}
 }
 
+// pow calculates x**y
+func pow(x, y int64) int64 {
+	r := int64(1)
+	for i := int64(0); i < y; i++ {
+		r = r * x
+	}
+	return r
+}
+
+func abs(x int64) int64 {
+	if x < 0 {
+		return -1 * x
+	}
+	return x
+}
+
 // MarshalText outputs a decimal representation of the scaled number
 func (d *Decimal) MarshalText() (text []byte, err error) {
 	b := new(bytes.Buffer)
@@ -27,10 +44,9 @@ func (d *Decimal) MarshalText() (text []byte, err error) {
 		b.WriteString(strconv.FormatInt(d.Unscaled, 10))
 		b.WriteString(strings.Repeat("0", -d.Scale))
 	} else {
-		str := strconv.FormatInt(d.Unscaled, 10)
-		b.WriteString(str[:len(str)-d.Scale])
-		b.WriteString(".")
-		b.WriteString(str[len(str)-d.Scale:])
+		dollaz := d.Unscaled / pow(10, int64(d.Scale))
+		cents := abs(d.Unscaled) % pow(10, int64(d.Scale))
+		b.WriteString(fmt.Sprintf("%d.%02d", dollaz, cents))
 	}
 	return b.Bytes(), nil
 }

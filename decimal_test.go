@@ -82,3 +82,14 @@ func TestDecimalCmp(t *testing.T) {
 		}
 	}
 }
+
+func TestOneCent(t *testing.T) {
+	d := NewDecimal(1, 2)
+	m, err := d.MarshalText()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(m) != "0.01" {
+		t.Fatal(string(m))
+	}
+}
