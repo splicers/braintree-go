@@ -13,6 +13,7 @@ type Transaction struct {
 	Status              string               `xml:"status,omitempty"`
 	Type                string               `xml:"type,omitempty"`
 	Amount              *Decimal             `xml:"amount"`
+	TaxAmount           *Decimal             `xml:"tax-amount,omitempty"`
 	OrderId             string               `xml:"order-id,omitempty"`
 	PaymentMethodToken  string               `xml:"payment-method-token,omitempty"`
 	PaymentMethodNonce  string               `xml:"payment-method-nonce,omitempty"`
