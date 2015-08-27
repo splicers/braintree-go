@@ -36,6 +36,7 @@ type CreditCard struct {
 	BillingAddress            *Address           `xml:"billing-address,omitempty"`
 	Subscriptions             *Subscriptions     `xml:"subscriptions,omitempty"`
 	PaypalAccount             *PaypalAccount     `xml:"paypal-account,omitempty"`
+	XMLName                   string             `xml:"credit-card"`
 }
 
 type CreditCards struct {

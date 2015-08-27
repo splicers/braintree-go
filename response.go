@@ -76,14 +76,14 @@ func (r *Response) address() (*Address, error) {
 }
 
 func (r *Response) paymentMethod() (interface{}, error) {
-	cc, err := r.creditCard()
-	if err == nil {
-		return cc, nil
-	}
-
 	pa, err := r.paypalAccount()
 	if err == nil {
 		return pa, nil
+	}
+
+	cc, err := r.creditCard()
+	if err == nil {
+		return cc, nil
 	}
 
 	return nil, err
