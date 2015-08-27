@@ -4,12 +4,8 @@ type PaymentMethodGateway struct {
 	*Braintree
 }
 
-type pmCreateArgs struct {
-	PaymentMethod *PaymentMethod `xml:"payment-method,omitempty"`
-}
-
 func (g *PaymentMethodGateway) Create(pm *PaymentMethod) (*PaymentMethod, error) {
-	resp, err := g.execute("POST", "payment_methods", &pmCreateArgs{pm})
+	resp, err := g.execute("POST", "payment_methods", pm)
 	if err != nil {
 		return nil, err
 	}
@@ -21,7 +17,7 @@ func (g *PaymentMethodGateway) Create(pm *PaymentMethod) (*PaymentMethod, error)
 }
 
 func (g *PaymentMethodGateway) Update(pm *PaymentMethod) (*PaymentMethod, error) {
-	resp, err := g.execute("PUT", "payment_methods/any/"+pm.Token, &pmCreateArgs{pm})
+	resp, err := g.execute("PUT", "payment_methods/any/"+pm.Token, pm)
 	if err != nil {
 		return nil, err
 	}
