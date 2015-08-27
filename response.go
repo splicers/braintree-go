@@ -75,12 +75,18 @@ func (r *Response) address() (*Address, error) {
 	return &b, nil
 }
 
-func (r *Response) paymentMethod() (*PaymentMethod, error) {
-	var pm PaymentMethod
-	if err := xml.Unmarshal(r.Body, &pm); err != nil {
-		return nil, err
+func (r *Response) paymentMethod() (interface{}, error) {
+	cc, err := r.creditCard()
+	if err == nil {
+		return cc, nil
 	}
-	return &pm, nil
+
+	pa, err := r.paypalAccount()
+	if err == nil {
+		return pa, nil
+	}
+
+	return nil, err
 }
 
 func (r *Response) addOns() ([]AddOn, error) {

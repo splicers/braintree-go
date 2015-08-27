@@ -4,7 +4,7 @@ type PaymentMethodGateway struct {
 	*Braintree
 }
 
-func (g *PaymentMethodGateway) Create(pm *PaymentMethod) (*PaymentMethod, error) {
+func (g *PaymentMethodGateway) Create(pm *PaymentMethod) (interface{}, error) {
 	resp, err := g.execute("POST", "payment_methods", pm)
 	if err != nil {
 		return nil, err
@@ -16,7 +16,7 @@ func (g *PaymentMethodGateway) Create(pm *PaymentMethod) (*PaymentMethod, error)
 	return nil, &invalidResponseError{resp}
 }
 
-func (g *PaymentMethodGateway) Update(pm *PaymentMethod) (*PaymentMethod, error) {
+func (g *PaymentMethodGateway) Update(pm *PaymentMethod) (interface{}, error) {
 	resp, err := g.execute("PUT", "payment_methods/any/"+pm.Token, pm)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func (g *PaymentMethodGateway) Update(pm *PaymentMethod) (*PaymentMethod, error)
 	return nil, &invalidResponseError{resp}
 }
 
-func (g *PaymentMethodGateway) Find(token string) (*PaymentMethod, error) {
+func (g *PaymentMethodGateway) Find(token string) (interface{}, error) {
 	resp, err := g.execute("GET", "payment_methods/any/"+token, nil)
 	if err != nil {
 		return nil, err
