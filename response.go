@@ -75,6 +75,14 @@ func (r *Response) address() (*Address, error) {
 	return &b, nil
 }
 
+func (r *Response) paymentMethod() (*PaymentMethod, error) {
+	var pm PaymentMethod
+	if err := xml.Unmarshal(r.Body, &pm); err != nil {
+		return nil, err
+	}
+	return &pm, nil
+}
+
 func (r *Response) addOns() ([]AddOn, error) {
 	var b AddOnList
 	if err := xml.Unmarshal(r.Body, &b); err != nil {
