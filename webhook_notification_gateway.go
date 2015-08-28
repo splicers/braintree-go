@@ -3,6 +3,7 @@ package braintree
 import (
 	"encoding/base64"
 	"encoding/xml"
+	"fmt"
 )
 
 type WebhookNotificationGateway struct {
@@ -28,4 +29,13 @@ func (w *WebhookNotificationGateway) Parse(signature, payload string) (*WebhookN
 		return nil, err
 	}
 	return &n, nil
+}
+
+func (w *WebhookNotificationGateway) Verify(challenge string) (string, error) {
+	h := hmacer{w.Braintree}
+	digest, err := h.hmac(challenge)
+	if err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("%s|%s", w.PublicKey, digest), nil
 }
