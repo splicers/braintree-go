@@ -8,7 +8,7 @@ type DiscountList struct {
 type Discount struct {
 	XMLName string `xml:"discount"`
 	Modification
-	InheritedFromID string `xml:"inherited_from_id,omitempty"`
+	InheritedFromID string `xml:"inherited-from-id,omitempty"`
 }
 
 type Discounts struct {
