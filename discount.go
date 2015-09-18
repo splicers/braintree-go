@@ -13,7 +13,7 @@ type Discount struct {
 
 type Discounts struct {
 	XMLName string      `xml:"discounts"`
-	Add     []*Discount `xml:"add,omitempty"`
-	Update  []*Discount `xml:"update,omitempty"`
+	Add     interface{} `xml:"add,omitempty"`
+	Update  interface{} `xml:"update,omitempty"`
 	Remove  []string    `xml:"remove,omitempty"`
 }
