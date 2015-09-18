@@ -8,12 +8,23 @@ type DiscountList struct {
 type Discount struct {
 	XMLName string `xml:"discount"`
 	Modification
+}
+
+type AddedDiscount struct {
+	XMLName string `xml:"add"`
+	Modification
+	InheritedFromID string `xml:"inherited-from-id,omitempty"`
+}
+
+type UpdatedDiscount struct {
+	XMLName string `xml:"update"`
+	Modification
 	InheritedFromID string `xml:"inherited-from-id,omitempty"`
 }
 
 type Discounts struct {
-	XMLName string      `xml:"discounts"`
-	Add     interface{} `xml:"add,omitempty"`
-	Update  interface{} `xml:"update,omitempty"`
-	Remove  []string    `xml:"remove,omitempty"`
+	XMLName string             `xml:"discounts"`
+	Add     []*AddedDiscount   `xml:"add,omitempty"`
+	Update  []*UpdatedDiscount `xml:"update,omitempty"`
+	Remove  []string           `xml:"remove,omitempty"`
 }
