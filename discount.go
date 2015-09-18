@@ -11,15 +11,13 @@ type Discount struct {
 }
 
 type AddedDiscount struct {
-	XMLName         string `xml:"add"`
 	InheritedFromID string `xml:"inherited-from-id,omitempty"`
-	Quantity        int    `xml:"quantity"`
+	Quantity        int    `xml:"quantity,omitempty"`
 }
 
 type UpdatedDiscount struct {
-	XMLName         string `xml:"update"`
 	InheritedFromID string `xml:"inherited-from-id,omitempty"`
-	Quantity        int    `xml:"quantity"`
+	Quantity        int    `xml:"quantity,omitempty"`
 }
 
 type Discounts struct {
