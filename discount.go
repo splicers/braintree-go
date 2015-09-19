@@ -20,9 +20,24 @@ type UpdatedDiscount struct {
 	Quantity        int    `xml:"quantity,omitempty"`
 }
 
+type Add struct {
+	Type      string           `xml:"type,attr"`
+	Discounts []*AddedDiscount `xml:"item,omitempty"`
+}
+
+type Update struct {
+	Type      string           `xml:"type,attr"`
+	Discounts []*AddedDiscount `xml:"item,omitempty"`
+}
+
+type Remove struct {
+	Type      string   `xml:"type,attr"`
+	Discounts []string `xml:"item,omitempty"`
+}
+
 type Discounts struct {
-	XMLName string             `xml:"discounts"`
-	Add     []*AddedDiscount   `xml:"add>item,omitempty"`
-	Update  []*UpdatedDiscount `xml:"update>item,omitempty"`
-	Remove  []string           `xml:"remove>item,omitempty"`
+	XMLName string  `xml:"discounts"`
+	Add     *Add    `xml:"add,omitempty"`
+	Update  *Update `xml:"update,omitempty"`
+	Remove  *Remove `xml:"remove,omitempty"`
 }

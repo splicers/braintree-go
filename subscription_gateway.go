@@ -5,6 +5,8 @@ type SubscriptionGateway struct {
 }
 
 func (g *SubscriptionGateway) Create(sub *Subscription) (*Subscription, error) {
+	sub.setXMLTypes()
+
 	resp, err := g.execute("POST", "subscriptions", sub)
 	if err != nil {
 		return nil, err
@@ -17,6 +19,8 @@ func (g *SubscriptionGateway) Create(sub *Subscription) (*Subscription, error) {
 }
 
 func (g *SubscriptionGateway) Update(sub *Subscription) (*Subscription, error) {
+	sub.setXMLTypes()
+
 	resp, err := g.execute("PUT", "subscriptions/"+sub.Id, sub)
 	if err != nil {
 		return nil, err

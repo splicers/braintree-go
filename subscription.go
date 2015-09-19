@@ -54,3 +54,17 @@ type SubscriptionOptions struct {
 	RevertSubscriptionOnProrationFailure bool `xml:"revert-subscription-on-proration-failure,omitempty"`
 	StartImmediately                     bool `xml:"start-immediately,omitempty"`
 }
+
+func (s *Subscription) setXMLTypes() {
+	if s != nil && s.Discounts != nil {
+		if s.Discounts.Add != nil {
+			s.Discounts.Add.Type = "array"
+		}
+		if s.Discounts.Update != nil {
+			s.Discounts.Update.Type = "array"
+		}
+		if s.Discounts.Remove != nil {
+			s.Discounts.Remove.Type = "array"
+		}
+	}
+}
