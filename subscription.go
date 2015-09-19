@@ -59,12 +59,23 @@ func (s *Subscription) setXMLTypes() {
 	if s != nil && s.Discounts != nil {
 		if s.Discounts.Add != nil {
 			s.Discounts.Add.Type = "array"
+			for _, discount := range s.Discounts.Add.Discounts {
+				discount.Quantity.Type = "integer"
+			}
 		}
 		if s.Discounts.Update != nil {
 			s.Discounts.Update.Type = "array"
+			for _, discount := range s.Discounts.Add.Discounts {
+				discount.Quantity.Type = "integer"
+			}
+
 		}
 		if s.Discounts.Remove != nil {
 			s.Discounts.Remove.Type = "array"
+			for _, discount := range s.Discounts.Add.Discounts {
+				discount.Quantity.Type = "integer"
+			}
+
 		}
 	}
 }
