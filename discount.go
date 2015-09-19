@@ -10,34 +10,29 @@ type Discount struct {
 	Modification
 }
 
-type AddedDiscount struct {
+type SubDiscount struct {
 	InheritedFromID string `xml:"inherited-from-id,omitempty"`
 	Quantity        int    `xml:"quantity,omitempty"`
 }
 
-type UpdatedDiscount struct {
-	InheritedFromID string `xml:"inherited-from-id,omitempty"`
-	Quantity        int    `xml:"quantity,omitempty"`
+type AddDiscounts struct {
+	Type      string         `xml:"type,attr"`
+	Discounts []*SubDiscount `xml:"item,omitempty"`
 }
 
-type Add struct {
-	Type      string           `xml:"type,attr"`
-	Discounts []*AddedDiscount `xml:"item,omitempty"`
+type UpdateDiscounts struct {
+	Type      string         `xml:"type,attr"`
+	Discounts []*SubDiscount `xml:"item,omitempty"`
 }
 
-type Update struct {
-	Type      string           `xml:"type,attr"`
-	Discounts []*AddedDiscount `xml:"item,omitempty"`
-}
-
-type Remove struct {
+type RemoveDiscounts struct {
 	Type      string   `xml:"type,attr"`
 	Discounts []string `xml:"item,omitempty"`
 }
 
 type Discounts struct {
-	XMLName string  `xml:"discounts"`
-	Add     *Add    `xml:"add,omitempty"`
-	Update  *Update `xml:"update,omitempty"`
-	Remove  *Remove `xml:"remove,omitempty"`
+	XMLName string           `xml:"discounts"`
+	Add     *AddDiscounts    `xml:"add,omitempty"`
+	Update  *UpdateDiscounts `xml:"update,omitempty"`
+	Remove  *RemoveDiscounts `xml:"remove,omitempty"`
 }
