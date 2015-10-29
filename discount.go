@@ -36,8 +36,9 @@ type RemoveDiscounts struct {
 }
 
 type Discounts struct {
-	XMLName string           `xml:"discounts"`
-	Add     *AddDiscounts    `xml:"add,omitempty"`
-	Update  *UpdateDiscounts `xml:"update,omitempty"`
-	Remove  *RemoveDiscounts `xml:"remove,omitempty"`
+	XMLName   string           `xml:"discounts"`
+	Add       *AddDiscounts    `xml:"add,omitempty"`
+	Update    *UpdateDiscounts `xml:"update,omitempty"`
+	Remove    *RemoveDiscounts `xml:"remove,omitempty"`
+	Discounts []*Discount      `xml:"discount,omitempty"`
 }
