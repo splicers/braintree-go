@@ -24,6 +24,7 @@ type Transaction struct {
 	PlanId                string               `xml:"plan-id,omitempty"`
 	RefundIds             *[]string            `xml:"refund-ids>item,omitempty"`
 	RefundedTransactionId *string              `xml:"refunded-transaction-id,omitempty"`
+	SubscriptionId        string               `xml:"subscription-id,omitempty"`
 	ServiceFeeAmount      *Decimal             `xml:"service-fee-amount,attr,omitempty"`
 	ShippingAddress       *Address             `xml:"shipping,omitempty"`
 	Status                string               `xml:"status,omitempty"`
