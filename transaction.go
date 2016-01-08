@@ -24,6 +24,7 @@ type Transaction struct {
 	PlanId                string               `xml:"plan-id,omitempty"`
 	RefundIds             *[]string            `xml:"refund-ids>item,omitempty"`
 	RefundedTransactionId *string              `xml:"refunded-transaction-id,omitempty"`
+	Subscription          *SubscriptionDetails `xml:"subscription,omitempty"`
 	SubscriptionId        string               `xml:"subscription-id,omitempty"`
 	ServiceFeeAmount      *Decimal             `xml:"service-fee-amount,attr,omitempty"`
 	ShippingAddress       *Address             `xml:"shipping,omitempty"`
@@ -32,6 +33,11 @@ type Transaction struct {
 	Type                  string               `xml:"type,omitempty"`
 	UpdatedAt             *time.Time           `xml:"updated-at,omitempty"`
 	XMLName               string               `xml:"transaction"`
+}
+
+type SubscriptionDetails struct {
+	BillingPeriodEndDate   string `xml:"billing-period-end-date,omitempty"`
+	BillingPeriodStartDate string `xml:"billing-period-start-date,omitempty"`
 }
 
 // TODO: not all transaction fields are implemented yet, here are the missing fields (add on demand)
