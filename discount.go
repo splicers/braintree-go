@@ -1,5 +1,7 @@
 package braintree
 
+import "github.com/splicers/braintree-go/nullable"
+
 type DiscountList struct {
 	XMLName   string     `xml:"discounts"`
 	Discounts []Discount `xml:"discount"`
@@ -16,8 +18,10 @@ type Quantity struct {
 }
 
 type SubDiscount struct {
-	InheritedFromID string    `xml:"inherited-from-id,omitempty"`
-	Quantity        *Quantity `xml:"quantity,omitempty"`
+	InheritedFromID       string              `xml:"inherited-from-id,omitempty"`
+	Quantity              *Quantity           `xml:"quantity,omitempty"`
+	NumberOfBillingCycles *nullable.NullInt64 `xml:"number-of-billing-cycles,omitempty"`
+	Amount                *Decimal            `xml:"amount,omitempty"`
 }
 
 type AddDiscounts struct {
