@@ -39,9 +39,9 @@ type Subscription struct {
 	TrialPeriod             *nullable.NullBool   `xml:"trial-period,omitempty"`
 	Transactions            *Transactions        `xml:"transactions,omitempty"`
 	Options                 *SubscriptionOptions `xml:"options,omitempty"`
+	CustomFields            *CustomFields        `xml:"custom-fields,omitempty"`
 	// AddOns                  []interface{} `xml:"add-ons,omitempty"`
 	// Descriptor              interface{}   `xml:"descriptor,omitempty"`   // struct with name, phone
-	Metadata string `xml:"metadata"`
 }
 
 type Subscriptions struct {
