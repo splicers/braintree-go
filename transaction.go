@@ -33,7 +33,7 @@ type Transaction struct {
 	Type                  string               `xml:"type,omitempty"`
 	UpdatedAt             *time.Time           `xml:"updated-at,omitempty"`
 	XMLName               string               `xml:"transaction"`
-	Metadata              string               `xml:"metadata"`
+	CustomFields          *CustomFields        `xml:"custom-fields,omitempty"`
 }
 
 type SubscriptionDetails struct {
